@@ -1,0 +1,28 @@
+"Metadata": {
+    "SNC::Parameter::Metadata": {
+        "existingResourceGroup":{
+            "datasource":"ServiceNow::Pools:: ResourceGroupPool.getByLDC"
+        },
+        "networkResourceGroup":{
+            "datasource":"ServiceNow::Pools:: ResourceGroupPool.getByLDC"
+        },
+        "nsgResourceGroup":{
+            "datasource":"ServiceNow::Pools:: ResourceGroupPool.getByLDC"
+        },
+        "network":{
+            "datasource":"ServiceNow::Pools::NetworkPool.getNetworksByResourceGroupLDC",
+            "datasourceFilter":{"ResourceGroup":"networkResourceGroup"}
+        },
+        "subnet":{
+            "datasource":"ServiceNow::Pools:: SubnetPool.getAzureSubnetsByNetwork",
+            "datasourceFilter":{"Network":"network", "ResourceGroup":"networkResourceGroup"}
+        },
+        "size": {
+            "datasource": "ServiceNow::Pools::HardwareTypePool.getObjectsByLDC"
+        },
+        "nsgName":{
+            "datasource":"ServiceNow::Pools::SecurityGroupPool.getNSGsByResourceGroupLDC",
+            "datasourceFilter":{"ResourceGroup":"nsgResourceGroup"}
+        }
+    }
+}
